@@ -1,11 +1,31 @@
 {
   "name": "জনবার্তা — বাংলা নিউজ পোর্টাল",
   "short_name": "জনবার্তা",
-  "description": "বাংলা নিউজ পোর্টালের ডেমো ওয়েবসাইট",
+  "description": "বাংলা নিউজ পোর্টাল; নমুনা সংবাদ ও লাইভ-সেটআপ সুবিধাসহ।",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#c8102e",
-  "lang": "bn"
+  "lang": "bn",
+  "icons": [
+    {
+      "src": "icons/jonbarta.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "লাইভ টিভি",
+      "short_name": "লাইভ",
+      "url": "./#live"
+    },
+    {
+      "name": "সর্বশেষ সংবাদ",
+      "short_name": "সর্বশেষ",
+      "url": "./#latest"
+    }
+  ]
 }
