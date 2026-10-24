@@ -1,0 +1,11 @@
+{
+  "name": "জনবার্তা — বাংলা নিউজ পোর্টাল",
+  "short_name": "জনবার্তা",
+  "description": "বাংলা নিউজ পোর্টালের ডেমো ওয়েবসাইট",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#c8102e",
+  "lang": "bn"
+}
