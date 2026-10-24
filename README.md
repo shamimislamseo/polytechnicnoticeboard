@@ -4,10 +4,10 @@ A responsive Bengali news-portal frontend prepared for GitHub Pages.
 
 ## Included in this frontend
 - Responsive Bengali homepage and category navigation (including lifestyle and religion)
-- Client-side search and category filters over sample data
+- Client-side search, category filters, result count, sorting by title/category, filter reset, and `/` keyboard shortcut over sample data
 - Dark mode, current date display, and breaking-news ticker
 - Lead story, latest-news cards, and popular-story sidebar
-- 14 separate sample article pages with canonical URLs, Open Graph metadata, NewsArticle JSON-LD, breadcrumbs, related stories, share/copy and print controls
+- 14 separate sample article pages with canonical URLs, Open Graph metadata, NewsArticle JSON-LD, breadcrumbs, related stories, Web Share/copy, WhatsApp/Facebook sharing links, print, and correction-report links
 - Story modal for lead/gallery samples, browser-local bookmarks, reader controls, and reading progress
 - Live TV placeholder with a configurable `live-config.js` slot and Bengali live setup guide (`live-setup.html`); video-news showcase and photo/video gallery
 - Browser-local draft editor demo
@@ -21,7 +21,7 @@ A responsive Bengali news-portal frontend prepared for GitHub Pages.
 - The editor and bookmarks use browser-local storage. The editor is not a secure multi-user admin CMS.
 - The contact form is a demo and does not send messages. Newsletter submission is also a demo.
 - Real authenticated admin publishing, server-side database, media uploads, scheduling, user roles, live news API/RSS ingestion, dynamic RSS, email delivery, analytics, push notifications, and video streaming require backend services and credentials.
-- Basic service-worker app-shell caching and a scalable SVG brand icon are included. Offline support is best-effort and does not make external images/video or dynamic content available offline.
+- Basic service-worker app-shell caching, a scalable SVG brand icon, and manifest shortcuts are included. Offline support is best-effort and does not make external images/video or dynamic content available offline.
 - Use original branding and properly licensed images. Verify every story and source before publication.
 
 ## Deploy
