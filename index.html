@@ -14,6 +14,7 @@
 <meta property="og:url" content="https://shamimislamseo.github.io/polytechnicnoticeboard/">
 <title>জনবার্তা | সর্বশেষ সংবাদ</title>
 <link rel="manifest" href="manifest.webmanifest">
+<link rel="alternate" type="application/rss+xml" title="জনবার্তা RSS" href="rss.xml">
 <meta name="color-scheme" content="light dark">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"NewsMediaOrganization","name":"জনবার্তা","url":"https://shamimislamseo.github.io/polytechnicnoticeboard/","description":"বাংলা নিউজ পোর্টাল টেমপ্লেট; এখানে নমুনা সংবাদ প্রদর্শিত হয়।","sameAs":[]}</script>
 <style>
@@ -89,7 +90,9 @@ const stories=[
 {cat:"রাজনীতি",title:"জনস্বার্থের বিভিন্ন বিষয় নিয়ে নীতিনির্ধারণী আলোচনার গুরুত্ব",desc:"জনগণের মতামত, স্বচ্ছতা এবং তথ্যভিত্তিক আলোচনা কার্যকর সিদ্ধান্তে সহায়তা করে।",img:"https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?auto=format&fit=crop&w=700&q=80",time:"৩ ঘণ্টা আগে"},
 {cat:"শিক্ষা",title:"কারিগরি শিক্ষায় দক্ষতা ও হাতে-কলমে প্রশিক্ষণের ভূমিকা",desc:"প্রকল্পভিত্তিক শিক্ষা এবং বাস্তব অভিজ্ঞতা শিক্ষার্থীদের কর্মজীবনের প্রস্তুতি বাড়ায়।",img:"https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=700&q=80",time:"৪ ঘণ্টা আগে"},
 {cat:"প্রযুক্তি",title:"অনলাইনে নিরাপদ থাকতে শক্তিশালী পাসওয়ার্ড ব্যবহারের পরামর্শ",desc:"প্রতিটি অ্যাকাউন্টে আলাদা পাসওয়ার্ড ও দুই ধাপের যাচাইকরণ ব্যবহার করুন।",img:"https://images.unsplash.com/photo-1563013544-824ae1b704d3?auto=format&fit=crop&w=700&q=80",time:"৪ ঘণ্টা আগে"},
-{cat:"বিশ্ব",title:"নবায়নযোগ্য জ্বালানিতে বিনিয়োগ নিয়ে আন্তর্জাতিক আগ্রহ",desc:"দীর্ঘমেয়াদি পরিকল্পনা ও প্রযুক্তির উন্নয়ন পরিচ্ছন্ন জ্বালানির বিস্তারে সহায়ক।",img:"https://images.unsplash.com/photo-1473341304170-971decb7ac1e?auto=format&fit=crop&w=700&q=80",time:"৫ ঘণ্টা আগে"}
+{cat:"বিশ্ব",title:"নবায়নযোগ্য জ্বালানিতে বিনিয়োগ নিয়ে আন্তর্জাতিক আগ্রহ",desc:"দীর্ঘমেয়াদি পরিকল্পনা ও প্রযুক্তির উন্নয়ন পরিচ্ছন্ন জ্বালানির বিস্তারে সহায়ক।",img:"https://images.unsplash.com/photo-1473341304170-971decb7ac1e?auto=format&fit=crop&w=700&q=80",time:"৫ ঘণ্টা আগে"},
+{cat:"জীবনযাপন",title:"সুস্থ দৈনন্দিন অভ্যাস গড়ে তুলতে ছোট পরিবর্তনের গুরুত্ব",desc:"ঘুম, নিয়মিত চলাফেরা এবং ভারসাম্যপূর্ণ জীবনযাপনের বিষয়ে নির্ভরযোগ্য তথ্য অনুসরণ করুন।",img:"https://images.unsplash.com/photo-1499209974431-9dddcece7f88?auto=format&fit=crop&w=700&q=80",time:"৬ ঘণ্টা আগে"},
+{cat:"ধর্ম",title:"ধর্মীয় ও সামাজিক বিষয়ে দায়িত্বশীল তথ্য যাচাইয়ের প্রয়োজন",desc:"ধর্মীয় বিষয়ে তথ্য প্রকাশের আগে নির্ভরযোগ্য সূত্র, প্রেক্ষাপট ও বিশেষজ্ঞ মতামত যাচাই করা জরুরি।",img:"https://images.unsplash.com/photo-1542810634-71277d95dcbb?auto=format&fit=crop&w=700&q=80",time:"৭ ঘণ্টা আগে"}
 ];
 let activeFilter="",query="",shown=6;
 const grid=document.getElementById("newsGrid"),noResults=document.getElementById("noResults");
