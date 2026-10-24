@@ -11,7 +11,7 @@ A responsive Bengali news-portal frontend prepared for GitHub Pages.
 - Story modal for lead/gallery samples, browser-local bookmarks, reader controls, and reading progress
 - Live TV placeholder with a configurable `live-config.js` slot and Bengali live setup guide (`live-setup.html`); video-news showcase and photo/video gallery
 - Browser-local draft editor demo
-- About, contact demo, privacy/terms, branded 404, robots.txt, XML sitemap, RSS sample feed, and basic web-app manifest
+- About, contact demo, privacy/terms, editorial/corrections policy, advertising information, live setup guide, branded 404, robots.txt, XML sitemap, RSS sample feed, and web-app manifest
 - GitHub Actions workflow for GitHub Pages deployment
 
 ## Important limitations
