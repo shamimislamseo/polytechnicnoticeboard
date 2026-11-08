@@ -1,31 +1,21 @@
-# জনবার্তা — Bengali News Portal
+# পলিটেকনিক নোটিশ বোর্ড (PNB)
 
-A responsive Bengali news-portal frontend prepared for GitHub Pages.
+বাংলাদেশের পলিটেকনিক শিক্ষার্থীদের নোটিশ, শিক্ষা সংবাদ, পরীক্ষা, ফলাফল, ভর্তি ও ক্যারিয়ার আপডেটের ওয়েবসাইট।
 
-## Included in this frontend
-- Responsive Bengali homepage and category navigation (including lifestyle and religion)
-- Client-side search, category filters, result count, sorting by title/category, filter reset, and `/` keyboard shortcut over sample data
-- Dark mode, current date display, and breaking-news ticker
-- Lead story, latest-news cards, and popular-story sidebar
-- 14 separate sample article pages with canonical URLs, Open Graph metadata, NewsArticle JSON-LD, breadcrumbs, related stories, Web Share/copy, WhatsApp/Facebook sharing links, print, and correction-report links
-- Story modal for lead/gallery samples, browser-local bookmarks, reader controls, and reading progress
-- Live TV placeholder with a configurable `live-config.js` slot and Bengali live setup guide (`live-setup.html`); video-news showcase and photo/video gallery
-- Browser-local draft editor demo
-- About, contact demo, privacy/terms, editorial/corrections policy, advertising information, live setup guide, branded 404, robots.txt, XML sitemap, RSS sample feed, and web-app manifest
-- GitHub Actions workflow for GitHub Pages deployment
+## দ্রুত পরিবর্তন
+- ওয়েবসাইটের নাম, স্লোগান ও রং: `site-config.js`
+- পোস্ট/নোটিশ যোগ, সম্পাদনা বা সরানো: `pnb-data.js`
+- লোগো: `icons/pnb-logo.svg`
+- মূল ডিজাইন: `index.html`
 
-## Important limitations
-- All articles, headlines, RSS entries, and gallery content are demo/sample content, not verified live news.
-- The RSS feed is static and does not update automatically when articles change.
-- Live stream is not enabled by default. To add it later, use `live-setup.html` and update `live-config.js` with your own authorized HTTPS embed URL; no stream is invented or embedded now.
-- The editor and bookmarks use browser-local storage. The editor is not a secure multi-user admin CMS.
-- The contact form is a demo and does not send messages. Newsletter submission is also a demo.
-- Real authenticated admin publishing, server-side database, media uploads, scheduling, user roles, live news API/RSS ingestion, dynamic RSS, email delivery, analytics, push notifications, and video streaming require backend services and credentials.
-- Basic service-worker app-shell caching, a scalable SVG brand icon, and manifest shortcuts are included. Offline support is best-effort and does not make external images/video or dynamic content available offline.
-- Use original branding and properly licensed images. Verify every story and source before publication.
+## নতুন পোস্ট যোগ
+`pnb-data.js` ফাইলে `window.PNB_POSTS` array-র ভেতরে একটি object কপি করে নতুন পোস্ট যোগ করুন। `category`, `title`, `summary`, `date`, `source`, `image`, `url`, `published` সম্পাদনা করুন। প্রকাশ না করতে `published:false` দিন। গুরুত্বপূর্ণ নোটিশে মূল PDF/অফিশিয়াল লিংক দিন।
 
-## Deploy
-In repository Settings → Pages, choose GitHub Actions as the build/deployment source. The workflow in `.github/workflows/pages.yml` deploys the repository root when changes are pushed to `main`.
+## প্রকাশ ও টিম
+GitHub-এ পরিবর্তন commit করলে GitHub Pages পুনরায় deploy হবে। একাধিক সম্পাদক যোগ করতে Repository → Settings → Collaborators থেকে প্রয়োজনীয় সীমিত access দিন। সবার Admin access প্রয়োজন নেই।
 
-## Project
-https://github.com/shamimislamseo/polytechnicnoticeboard
+## গুরুত্বপূর্ণ সীমাবদ্ধতা
+এটি GitHub Pages-এ চলা static website। তাই এখানে এখনো নিরাপদ shared admin login, cloud database, multi-user publishing বা visitor account নেই। ব্রাউজারের localStorage-ভিত্তিক খসড়া সবার মধ্যে শেয়ার হয় না। এসবের জন্য পরে Supabase/Firebase বা WordPress-ভিত্তিক backend যুক্ত করতে হবে। কোনো password/API secret public repository-তে রাখবেন না।
+
+## ডেমো কনটেন্ট
+`pnb-data.js`-এর নমুনা পোস্টগুলো প্রকাশের আগে বাস্তব তথ্য দিয়ে বদলে দিন বা `published:false` করুন।
