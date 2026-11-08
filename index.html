@@ -32,8 +32,64 @@
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
 </style>
 <link rel="stylesheet" href="pnb-motion.css?v=2">
+
+<style id="pnb-coming-soon-style">
+#pnb-coming-soon{position:fixed;inset:0;z-index:100000;display:grid;place-items:center;overflow:auto;padding:24px 16px;background:radial-gradient(ellipse at 15% 10%,#1464a9 0,transparent 38%),radial-gradient(ellipse at 90% 85%,#0c7892 0,transparent 34%),linear-gradient(145deg,#06182b,#092f52 58%,#061b31);color:#fff;font-family:"Hind Siliguri","Noto Sans Bengali",sans-serif}
+#pnb-coming-soon[hidden]{display:none!important}body.pnb-coming-soon{overflow:hidden}
+.pnb-cs-card{position:relative;width:min(100%,620px);padding:clamp(26px,6vw,54px) clamp(20px,6vw,48px);text-align:center;border:1px solid #ffffff26;border-radius:28px;background:linear-gradient(145deg,#ffffff15,#ffffff08);box-shadow:0 28px 90px #0005;backdrop-filter:blur(16px);animation:pnbCsIn .7s cubic-bezier(.2,.8,.2,1) both}
+.pnb-cs-orb{position:absolute;width:190px;height:190px;border:1px solid #6eddf455;border-radius:50%;top:-95px;right:-75px;pointer-events:none;box-shadow:0 0 0 22px #6eddf40a,0 0 0 45px #6eddf407}
+.pnb-cs-logo{width:78px;height:78px;object-fit:contain;padding:9px;border-radius:22px;background:#fff;box-shadow:0 10px 35px #0003}
+.pnb-cs-kicker{margin:20px 0 8px;color:#86e5f2;font-size:13px;font-weight:800;letter-spacing:2.5px}
+.pnb-cs-card h1{margin:0;color:#fff;font-size:clamp(29px,6vw,44px);line-height:1.25;font-weight:800}
+.pnb-cs-desc{max-width:450px;margin:13px auto 25px;color:#d4e7f7;font-size:16px}
+.pnb-cs-timer{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:0 auto 23px;max-width:470px}
+.pnb-cs-unit{padding:15px 7px 12px;border:1px solid #ffffff25;border-radius:15px;background:#041c33a8}
+.pnb-cs-number{display:block;font-variant-numeric:tabular-nums;font-size:clamp(29px,7vw,42px);font-weight:800;line-height:1.15;color:#fff}
+.pnb-cs-label{display:block;margin-top:6px;color:#9fc5df;font-size:12px}
+.pnb-cs-track{height:5px;max-width:440px;margin:0 auto 18px;overflow:hidden;border-radius:10px;background:#ffffff20}
+.pnb-cs-track span{display:block;width:0;height:100%;border-radius:10px;background:linear-gradient(90deg,#45d4dc,#8de9f0);transition:width .5s linear}
+.pnb-cs-foot{margin:0;color:#a9c5dc;font-size:13px}
+.pnb-cs-status{margin:15px 0 0;color:#bfeaf0;font-size:13px}
+@keyframes pnbCsIn{from{opacity:0;transform:translateY(18px) scale(.98)}to{opacity:1;transform:translateY(0) scale(1)}}
+@media(max-width:390px){.pnb-cs-timer{gap:6px}.pnb-cs-unit{padding:12px 3px}.pnb-cs-label{font-size:11px}}
+@media(prefers-reduced-motion:reduce){.pnb-cs-card{animation:none}.pnb-cs-track span{transition:none}}
+</style>
 </head>
-<body>
+<body class="pnb-coming-soon">
+<section id="pnb-coming-soon" role="dialog" aria-modal="true" aria-labelledby="pnb-cs-title">
+  <div class="pnb-cs-card">
+    <span class="pnb-cs-orb" aria-hidden="true"></span>
+    <img class="pnb-cs-logo" src="icons/pnb-logo.svg" alt="পলিটেকনিক নোটিশ বোর্ড লোগো">
+    <p class="pnb-cs-kicker">POLYTECHNIC NOTICE BOARD</p>
+    <h1 id="pnb-cs-title">আমরা আবার ফিরে আসছি!</h1>
+    <p class="pnb-cs-desc">পলিটেকনিক নোটিশ বোর্ড (PNB)-এ নতুন অভিজ্ঞতা নিয়ে কাজ চলছে। আমাদের সঙ্গে থাকার জন্য ধন্যবাদ।</p>
+    <div class="pnb-cs-timer" aria-label="ফিরে আসার কাউন্টডাউন">
+      <div class="pnb-cs-unit"><span class="pnb-cs-number" id="pnb-cs-hours">05</span><span class="pnb-cs-label">ঘণ্টা</span></div>
+      <div class="pnb-cs-unit"><span class="pnb-cs-number" id="pnb-cs-minutes">00</span><span class="pnb-cs-label">মিনিট</span></div>
+      <div class="pnb-cs-unit"><span class="pnb-cs-number" id="pnb-cs-seconds">00</span><span class="pnb-cs-label">সেকেন্ড</span></div>
+      <div class="pnb-cs-unit"><span class="pnb-cs-number" id="pnb-cs-days">00</span><span class="pnb-cs-label">দিন</span></div>
+    </div>
+    <div class="pnb-cs-track" aria-hidden="true"><span id="pnb-cs-progress"></span></div>
+    <p class="pnb-cs-foot">আপনার জন্য আলাদা ৫ ঘণ্টার কাউন্টডাউন শুরু হয়েছে।</p>
+    <p class="pnb-cs-status" id="pnb-cs-status" aria-live="polite">প্রস্তুতির কাজ চলছে…</p>
+  </div>
+</section>
+<script>
+(()=>{'use strict';
+const KEY='pnb_visitor_countdown_end_v1',DURATION=5*60*60*1000;
+const overlay=document.getElementById('pnb-coming-soon');
+const ids={h:document.getElementById('pnb-cs-hours'),m:document.getElementById('pnb-cs-minutes'),s:document.getElementById('pnb-cs-seconds'),d:document.getElementById('pnb-cs-days'),p:document.getElementById('pnb-cs-progress'),status:document.getElementById('pnb-cs-status')};
+let end=0,storageOK=true;
+try{end=Number(localStorage.getItem(KEY));if(!Number.isFinite(end)||end<=0){end=Date.now()+DURATION;localStorage.setItem(KEY,String(end));}}catch(e){storageOK=false;end=Date.now()+DURATION;}
+function tick(){const left=Math.max(0,end-Date.now());const days=Math.floor(left/86400000),hours=Math.floor(left%86400000/3600000),minutes=Math.floor(left%3600000/60000),seconds=Math.floor(left%60000/1000);
+ids.d.textContent=String(days).padStart(2,'0');ids.h.textContent=String(hours).padStart(2,'0');ids.m.textContent=String(minutes).padStart(2,'0');ids.s.textContent=String(seconds).padStart(2,'0');ids.p.style.width=((1-left/DURATION)*100).toFixed(2)+'%';
+if(left<=0){overlay.hidden=true;document.body.classList.remove('pnb-coming-soon');try{localStorage.setItem(KEY,'done');}catch(e){}return;}
+if(!storageOK)ids.status.textContent='এই ব্রাউজারে স্টোরেজ বন্ধ থাকায় পেজ খোলা থাকা অবস্থায় কাউন্টডাউন চলবে।';
+window.setTimeout(tick,250);
+}
+if(end===0){overlay.hidden=true;document.body.classList.remove('pnb-coming-soon');}else tick();
+})();
+</script>
 <div class="topline"><div class="wrap toprow"><div class="top-left"><span><i class="top-dot"></i>বাংলাদেশের পলিটেকনিক শিক্ষার্থীদের তথ্যকেন্দ্র</span></div><div class="top-right"><span id="today">আজকের তারিখ</span><span>All Polytechnic Institute · Since 2018</span></div></div></div>
 <header class="masthead"><div class="wrap mastrow">
 <a class="brand" href="#home"><img src="icons/pnb-logo.svg" alt="PNB লোগো"><div><h1 id="siteName">পলিটেকনিক নোটিশ বোর্ড</h1><p id="tagline">All Polytechnic Institute | Since 2018</p></div></a>
