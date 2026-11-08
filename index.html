@@ -50,6 +50,10 @@
 .pnb-cs-track span{display:block;width:0;height:100%;border-radius:10px;background:linear-gradient(90deg,#45d4dc,#8de9f0);transition:width .5s linear}
 .pnb-cs-foot{margin:0;color:#a9c5dc;font-size:13px}
 .pnb-cs-status{margin:15px 0 0;color:#bfeaf0;font-size:13px}
+.pnb-cs-music{display:inline-flex;align-items:center;justify-content:center;gap:9px;margin:0 0 17px;padding:10px 17px;border:1px solid #7de4ed66;border-radius:999px;background:linear-gradient(110deg,#0b83ad,#075b9a);color:#fff;font:700 14px inherit;cursor:pointer;box-shadow:0 8px 24px #001c3544;transition:transform .2s,filter .2s}
+.pnb-cs-music:hover{transform:translateY(-2px);filter:brightness(1.12)}.pnb-cs-music[aria-pressed="true"]{background:linear-gradient(110deg,#087e75,#08609a)}
+.pnb-cs-music:focus-visible{outline:3px solid #9af4fa;outline-offset:3px}
+
 @keyframes pnbCsIn{from{opacity:0;transform:translateY(18px) scale(.98)}to{opacity:1;transform:translateY(0) scale(1)}}
 @media(max-width:390px){.pnb-cs-timer{gap:6px}.pnb-cs-unit{padding:12px 3px}.pnb-cs-label{font-size:11px}}
 @media(prefers-reduced-motion:reduce){.pnb-cs-card{animation:none}.pnb-cs-track span{transition:none}}
@@ -70,7 +74,7 @@
       <div class="pnb-cs-unit"><span class="pnb-cs-number" id="pnb-cs-days">00</span><span class="pnb-cs-label">দিন</span></div>
     </div>
     <div class="pnb-cs-track" aria-hidden="true"><span id="pnb-cs-progress"></span></div>
-    <p class="pnb-cs-foot">আপনার জন্য আলাদা ৫ ঘণ্টার কাউন্টডাউন শুরু হয়েছে।</p>
+    <button class="pnb-cs-music" id="pnb-cs-music" type="button" aria-pressed="false">♫ মিউজিক চালু করুন</button>
     <p class="pnb-cs-status" id="pnb-cs-status" aria-live="polite">প্রস্তুতির কাজ চলছে…</p>
   </div>
 </section>
@@ -79,11 +83,27 @@
 const KEY='pnb_visitor_countdown_end_v1',DURATION=5*60*60*1000;
 const overlay=document.getElementById('pnb-coming-soon');
 const ids={h:document.getElementById('pnb-cs-hours'),m:document.getElementById('pnb-cs-minutes'),s:document.getElementById('pnb-cs-seconds'),d:document.getElementById('pnb-cs-days'),p:document.getElementById('pnb-cs-progress'),status:document.getElementById('pnb-cs-status')};
-let end=0,storageOK=true;
+let end=0,storageOK=true,audio=null,beatTimer=null,beatStep=0;
+const musicButton=document.getElementById('pnb-cs-music');
+function makeBeat(ctx,step){
+ const now=ctx.currentTime;
+ if(step%4===0||step%4===2){const o=ctx.createOscillator(),g=ctx.createGain();o.type='sine';o.frequency.setValueAtTime(105,now);o.frequency.exponentialRampToValueAtTime(43,now+.13);g.gain.setValueAtTime(.0001,now);g.gain.exponentialRampToValueAtTime(.22,now+.008);g.gain.exponentialRampToValueAtTime(.0001,now+.2);o.connect(g);g.connect(ctx.destination);o.start(now);o.stop(now+.21);}
+ const length=Math.floor(ctx.sampleRate*.045),buffer=ctx.createBuffer(1,length,ctx.sampleRate),data=buffer.getChannelData(0);for(let i=0;i<length;i++)data[i]=(Math.random()*2-1)*(1-i/length);
+ const noise=ctx.createBufferSource(),filter=ctx.createBiquadFilter(),gain=ctx.createGain();noise.buffer=buffer;filter.type='highpass';filter.frequency.value=7000;gain.gain.setValueAtTime(.0001,now);gain.gain.exponentialRampToValueAtTime(step%4===2?.045:.025,now+.003);gain.gain.exponentialRampToValueAtTime(.0001,now+.045);noise.connect(filter);filter.connect(gain);gain.connect(ctx.destination);noise.start(now);
+}
+async function toggleMusic(){
+ try{
+  if(beatTimer){clearInterval(beatTimer);beatTimer=null;if(audio)await audio.close();audio=null;musicButton.setAttribute('aria-pressed','false');musicButton.textContent='♫ মিউজিক চালু করুন';return;}
+  const Audio=window.AudioContext||window.webkitAudioContext;if(!Audio){musicButton.textContent='এই ব্রাউজারে অডিও নেই';return;}
+  audio=new Audio();await audio.resume();beatStep=0;makeBeat(audio,beatStep++);beatTimer=setInterval(()=>{if(audio&&audio.state==='running')makeBeat(audio,beatStep++);},600);
+  musicButton.setAttribute('aria-pressed','true');musicButton.textContent='Ⅱ মিউজিক বন্ধ করুন';
+ }catch(e){musicButton.textContent='মিউজিক চালু করা যায়নি';}
+}
+musicButton.addEventListener('click',toggleMusic);
 try{const saved=localStorage.getItem(KEY);if(saved==='done'){end=0;}else{end=Number(saved);if(!Number.isFinite(end)||end<=0){end=Date.now()+DURATION;localStorage.setItem(KEY,String(end));}}}catch(e){storageOK=false;end=Date.now()+DURATION;}
 function tick(){const left=Math.max(0,end-Date.now());const days=Math.floor(left/86400000),hours=Math.floor(left%86400000/3600000),minutes=Math.floor(left%3600000/60000),seconds=Math.floor(left%60000/1000);
 ids.d.textContent=String(days).padStart(2,'0');ids.h.textContent=String(hours).padStart(2,'0');ids.m.textContent=String(minutes).padStart(2,'0');ids.s.textContent=String(seconds).padStart(2,'0');ids.p.style.width=((1-left/DURATION)*100).toFixed(2)+'%';
-if(left<=0){overlay.hidden=true;document.body.classList.remove('pnb-coming-soon');try{localStorage.setItem(KEY,'done');}catch(e){}return;}
+if(left<=0){overlay.hidden=true;document.body.classList.remove('pnb-coming-soon');if(beatTimer){clearInterval(beatTimer);beatTimer=null;}if(audio){audio.close();audio=null;}try{localStorage.setItem(KEY,'done');}catch(e){}return;}
 if(!storageOK)ids.status.textContent='এই ব্রাউজারে স্টোরেজ বন্ধ থাকায় পেজ খোলা থাকা অবস্থায় কাউন্টডাউন চলবে।';
 window.setTimeout(tick,250);
 }
