@@ -1,11 +1,9 @@
-/*
- * জনবার্তা লাইভ কনফিগারেশন
- * লাইভ সম্প্রচারের অনুমতি/অধিকার নিশ্চিত করে তারপর নিচের মান বদলান।
- * embedUrl-এ অবশ্যই ভিডিও প্ল্যাটফর্মের HTTPS EMBED URL দিন (সাধারণ watch URL নয়)।
+/* PNB LIVE CONFIGURATION
+ * চালুর আগে নিজের/অনুমোদিত সম্প্রচারের HTTPS embed URL দিন।
  * GitHub Pages-এ কোনো গোপন API key বা password রাখবেন না।
  */
-window.JONBARTA_LIVE = {
+window.PNB_LIVE = {
   enabled: false,
   embedUrl: "",
-  label: "জনবার্তা লাইভ"
+  label: "PNB লাইভ"
 };
