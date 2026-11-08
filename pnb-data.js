@@ -1,9 +1,18 @@
-/* PNB CONTENT — নতুন পোস্ট যোগ করতে নিচের array-তে আরেকটি object কপি করুন।
+/* PNB CONTENT
+   নতুন যাচাইকৃত পোস্ট যোগ করতে নিচের array-তে object যুক্ত করুন।
    category: নোটিশ | শিক্ষা সংবাদ | পরীক্ষা | ফলাফল | ভর্তি | ক্যারিয়ার | ইনস্টিটিউট
-   published:false দিলে পোস্টটি ওয়েবসাইটে দেখাবে না।
-   url-এ মূল নোটিশ/PDF বা নির্ভরযোগ্য সূত্রের লিংক দিন। */
+   প্রকাশের আগে title, summary, date, source এবং মূল official URL যাচাই করুন।
+   published:false দিলে পোস্টটি ওয়েবসাইটে দেখাবে না। */
 window.PNB_POSTS = [
- {id:"welcome-pnb",category:"PNB আপডেট",title:"পলিটেকনিক শিক্ষার্থীদের তথ্য এখন এক জায়গায়",summary:"PNB-তে নোটিশ, পরীক্ষা, ফলাফল, ভর্তি, ক্যারিয়ার ও ইনস্টিটিউটভিত্তিক আপডেট পাওয়া যাবে। গুরুত্বপূর্ণ তথ্য প্রকাশের আগে মূল সূত্র যাচাই করুন।",date:"2026-11-08",source:"PNB",image:"icons/pnb-logo.svg",url:"",published:true},
- {id:"sample-notice",category:"নোটিশ",title:"নোটিশ প্রকাশের নমুনা — এখানে আসল নোটিশের শিরোনাম দিন",summary:"এই নমুনা পোস্টটি সম্পাদনা করে প্রতিষ্ঠানের নাম, নোটিশের তারিখ, সংক্ষিপ্ত বিবরণ এবং মূল PDF/অফিশিয়াল লিংক যুক্ত করুন।",date:"2026-11-08",source:"নমুনা — প্রকাশের আগে পরিবর্তন করুন",published:false,image:"https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=900&q=80",url:"",published:true},
- {id:"sample-exam",category:"পরীক্ষা",title:"পরীক্ষার আপডেট — নমুনা কনটেন্ট",summary:"এটি ডেমো কনটেন্ট। প্রকৃত পরীক্ষার রুটিন বা নির্দেশনা প্রকাশের আগে BTEB বা সংশ্লিষ্ট প্রতিষ্ঠানের মূল বিজ্ঞপ্তি যুক্ত করুন।",date:"2026-11-08",source:"নমুনা — প্রকাশের আগে পরিবর্তন করুন",image:"https://images.unsplash.com/photo-1513258496099-48168024aec0?auto=format&fit=crop&w=900&q=80",url:"",published:true}
+  {
+    id: "welcome-pnb",
+    category: "PNB আপডেট",
+    title: "পলিটেকনিক শিক্ষার্থীদের তথ্য এখন এক জায়গায়",
+    summary: "PNB-তে নোটিশ, পরীক্ষা, ফলাফল, ভর্তি, ক্যারিয়ার ও ইনস্টিটিউটভিত্তিক আপডেট পাওয়া যাবে। গুরুত্বপূর্ণ তথ্য প্রকাশের আগে মূল সূত্র যাচাই করুন।",
+    date: "2026-11-08",
+    source: "পলিটেকনিক নোটিশ বোর্ড (PNB)",
+    image: "icons/pnb-logo.svg",
+    url: "",
+    published: true
+  }
 ];
