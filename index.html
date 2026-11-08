@@ -29,6 +29,7 @@ button:active,.btn:active{transform:scale(.97)}
 :focus-visible{outline:3px solid #18a9d2;outline-offset:3px}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
 </style>
+<link rel="stylesheet" href="pnb-motion.css?v=1">
 </head>
 <body>
 <div class="topline"><div class="wrap toprow"><span id="today">বাংলাদেশের পলিটেকনিক শিক্ষার্থীদের তথ্যকেন্দ্র</span><span>All Polytechnic Institute · Since 2018</span></div></div>
@@ -64,4 +65,5 @@ $("themeBtn").addEventListener("click",()=>{document.body.classList.toggle("dark
 </script>
 <script>
 (()=>{const targets=document.querySelectorAll('.section-title,.card,.side-item,.hero-main,.ticker');if(!('IntersectionObserver'in window)){targets.forEach(x=>x.classList.add('pnb-reveal'));return;}const io=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('pnb-reveal');io.unobserve(e.target)}}),{threshold:.08});targets.forEach(x=>io.observe(x));})();
-</script></body></html>
+</script><script src="pnb-motion.js?v=1" defer></script>
+</body></html>
