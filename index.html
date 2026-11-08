@@ -80,7 +80,7 @@ const KEY='pnb_visitor_countdown_end_v1',DURATION=5*60*60*1000;
 const overlay=document.getElementById('pnb-coming-soon');
 const ids={h:document.getElementById('pnb-cs-hours'),m:document.getElementById('pnb-cs-minutes'),s:document.getElementById('pnb-cs-seconds'),d:document.getElementById('pnb-cs-days'),p:document.getElementById('pnb-cs-progress'),status:document.getElementById('pnb-cs-status')};
 let end=0,storageOK=true;
-try{end=Number(localStorage.getItem(KEY));if(!Number.isFinite(end)||end<=0){end=Date.now()+DURATION;localStorage.setItem(KEY,String(end));}}catch(e){storageOK=false;end=Date.now()+DURATION;}
+try{const saved=localStorage.getItem(KEY);if(saved==='done'){end=0;}else{end=Number(saved);if(!Number.isFinite(end)||end<=0){end=Date.now()+DURATION;localStorage.setItem(KEY,String(end));}}}catch(e){storageOK=false;end=Date.now()+DURATION;}
 function tick(){const left=Math.max(0,end-Date.now());const days=Math.floor(left/86400000),hours=Math.floor(left%86400000/3600000),minutes=Math.floor(left%3600000/60000),seconds=Math.floor(left%60000/1000);
 ids.d.textContent=String(days).padStart(2,'0');ids.h.textContent=String(hours).padStart(2,'0');ids.m.textContent=String(minutes).padStart(2,'0');ids.s.textContent=String(seconds).padStart(2,'0');ids.p.style.width=((1-left/DURATION)*100).toFixed(2)+'%';
 if(left<=0){overlay.hidden=true;document.body.classList.remove('pnb-coming-soon');try{localStorage.setItem(KEY,'done');}catch(e){}return;}
