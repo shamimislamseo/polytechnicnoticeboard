@@ -68,3 +68,12 @@
  .pnb-news-home .pnb-nav a,.pnb-nav-more>summary{font-size:13px;padding:10px 11px}
  .pnb-nav-dropdown{position:fixed;top:auto;right:11px;min-width:175px}
 }
+
+
+/* Consistent outline icons throughout the PNB footer */
+.pnb-news-home .pnb-footer .pnb-footgrid>div:not(.pnb-footer-social)>a{display:flex;align-items:center;gap:9px;margin:8px 0;color:#d8e9f8;text-decoration:none}
+.pnb-news-home .pnb-footer .pnb-footgrid>div:not(.pnb-footer-social)>a:hover,.pnb-news-home .pnb-social-links a:hover{color:#fff;border-color:#ffffff70}
+.pnb-footer-icon{width:19px;height:19px;flex:0 0 19px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.pnb-news-home .pnb-social-links a{display:flex;align-items:center;gap:10px;min-height:42px}
+.pnb-news-home .pnb-social-links .pnb-footer-icon{width:20px;height:20px;flex-basis:20px;color:#fff}
+@media(max-width:640px){.pnb-news-home .pnb-footer .pnb-footgrid>div:not(.pnb-footer-social)>a{gap:7px}.pnb-footer-icon{width:17px;height:17px;flex-basis:17px}}
