@@ -7,7 +7,8 @@ window.PNB_CONFIG = {
   primaryColor: "#0759a8",
   accentColor: "#18a9d2",
   contactEmail: "",
-  facebookPage: "",\n  facebookGroup: "https://www.facebook.com/groups/pnb.bd",
+  facebookPage: "",
+  facebookGroup: "https://www.facebook.com/groups/pnb.bd",
   showDrafts: false
 };
 // রং, নাম ও যোগাযোগের তথ্য এখানে বদলান। গোপন পাসওয়ার্ড/API key এখানে রাখবেন না।
