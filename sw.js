@@ -1,39 +1,6 @@
-const VERSION = "jonbarta-shell-v1";
+const VERSION = "pnb-shell-v2";
 const BASE = new URL("./", self.location).pathname;
-const CORE = [
-  BASE,
-  BASE + "index.html",
-  BASE + "manifest.webmanifest",
-  BASE + "icons/jonbarta.svg",
-  BASE + "about.html",
-  BASE + "contact.html",
-  BASE + "privacy.html",
-  BASE + "live-setup.html",
-  BASE + "404.html"
-];
-self.addEventListener("install", event => {
-  event.waitUntil(caches.open(VERSION).then(cache => cache.addAll(CORE)).then(() => self.skipWaiting()));
-});
-self.addEventListener("activate", event => {
-  event.waitUntil(caches.keys().then(keys => Promise.all(keys.filter(key => key !== VERSION).map(key => caches.delete(key)))).then(() => self.clients.claim()));
-});
-self.addEventListener("fetch", event => {
-  const req = event.request;
-  if (req.method !== "GET" || new URL(req.url).origin !== self.location.origin) return;
-  const url = new URL(req.url);
-  if (url.pathname.endsWith("/live-config.js")) {
-    event.respondWith(fetch(req).catch(() => caches.match(req)));
-    return;
-  }
-  if (req.mode === "navigate") {
-    event.respondWith(fetch(req).then(response => {
-      if (response.ok) caches.open(VERSION).then(cache => cache.put(req, response.clone()));
-      return response;
-    }).catch(async () => (await caches.match(req)) || (await caches.match(BASE + "index.html"))));
-    return;
-  }
-  event.respondWith(caches.match(req).then(cached => cached || fetch(req).then(response => {
-    if (response.ok) caches.open(VERSION).then(cache => cache.put(req, response.clone()));
-    return response;
-  })));
-});
+const CORE = [BASE,BASE+"index.html",BASE+"manifest.webmanifest",BASE+"site-config.js",BASE+"pnb-data.js",BASE+"icons/pnb-logo.svg",BASE+"about.html",BASE+"contact.html",BASE+"privacy.html",BASE+"editorial-policy.html",BASE+"advertise.html",BASE+"404.html"];
+self.addEventListener("install",e=>e.waitUntil(caches.open(VERSION).then(c=>c.addAll(CORE)).then(()=>self.skipWaiting())));
+self.addEventListener("activate",e=>e.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k!==VERSION).map(k=>caches.delete(k)))).then(()=>self.clients.claim())));
+self.addEventListener("fetch",e=>{const r=e.request;if(r.method!=="GET"||new URL(r.url).origin!==self.location.origin)return;const u=new URL(r.url);if(u.pathname.endsWith("/site-config.js")||u.pathname.endsWith("/pnb-data.js")){e.respondWith(fetch(r).catch(()=>caches.match(r)));return;}if(r.mode==="navigate"){e.respondWith(fetch(r).then(res=>{if(res.ok)caches.open(VERSION).then(c=>c.put(r,res.clone()));return res;}).catch(async()=>(await caches.match(r))||(await caches.match(BASE+"index.html"))));return;}e.respondWith(caches.match(r).then(c=>c||fetch(r).then(res=>{if(res.ok)caches.open(VERSION).then(x=>x.put(r,res.clone()));return res;})));});
