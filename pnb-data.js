@@ -16,3 +16,6 @@ window.PNB_POSTS = [
     published: true
   }
 ];
+
+/* Notice records: add only verified notices; keep published false until reviewed. */
+window.PNB_NOTICES = window.PNB_NOTICES || [];
