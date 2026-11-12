@@ -1,0 +1,69 @@
+/* PNB 3D hero motion — lightweight CSS, no external animation library */
+.pnb-news-home .pnb-lead-main{
+  isolation:isolate; perspective:1100px; transform-style:preserve-3d;
+  border-radius:22px; box-shadow:0 22px 55px rgba(7,42,76,.18);
+  background:linear-gradient(135deg,#b9d5ff 0%,#8fb9f3 55%,#e8c4fa 100%);
+  transition:transform .55s cubic-bezier(.2,.75,.2,1),box-shadow .55s;
+  animation:pnbHeroEnter .9s both;
+}
+.pnb-news-home .pnb-lead-main:hover{
+  transform:rotateX(2deg) rotateY(-2deg) translateY(-5px);
+  box-shadow:0 30px 65px rgba(7,42,76,.25);
+}
+.pnb-news-home .pnb-lead-main>img{z-index:0;opacity:.30;filter:saturate(.8);transform:scale(1.025)}
+.pnb-news-home .pnb-lead-shade{
+  z-index:1;background:linear-gradient(110deg,rgba(9,45,78,.28),rgba(9,45,78,.08) 60%,rgba(9,45,78,.20));
+}
+.pnb-news-home .pnb-lead-main:before{
+  content:"";position:absolute;z-index:2;left:0;right:0;bottom:-1px;height:53%;
+  background:linear-gradient(145deg,#f6c5f3,#e7a8ec 70%,#d79ce7);
+  clip-path:polygon(0 0,12% 0,12% 22%,22% 22%,22% 43%,34% 43%,34% 65%,46% 65%,46% 84%,54% 84%,54% 65%,66% 65%,66% 43%,78% 43%,78% 22%,88% 22%,88% 0,100% 0,100% 100%,0 100%);
+  opacity:.76;transform:translateZ(18px);animation:pnbStepsFloat 7s ease-in-out infinite;
+}
+.pnb-news-home .pnb-lead-main:after{
+  content:"";position:absolute;z-index:2;right:9%;top:12%;width:clamp(76px,10vw,126px);aspect-ratio:1;
+  border-radius:34% 66% 58% 42% / 42% 38% 62% 58%;
+  border:1px solid rgba(255,255,255,.8);
+  background:radial-gradient(circle at 32% 25%,rgba(255,255,255,.92),rgba(187,220,255,.55) 35%,rgba(68,129,194,.18) 72%);
+  box-shadow:inset -12px -14px 25px rgba(35,79,133,.18),0 18px 34px rgba(28,70,120,.2);
+  backdrop-filter:blur(5px);transform:translateZ(48px) rotate(-12deg);
+  animation:pnbOrbFloat 6s ease-in-out infinite;
+}
+.pnb-news-home .pnb-lead-copy{z-index:3;text-shadow:0 2px 12px rgba(3,26,48,.24);transform:translateZ(34px)}
+.pnb-news-home .pnb-lead-copy strong{max-width:780px}
+.pnb-news-home .pnb-lead-side .pnb-side-news{
+  border-radius:16px;transform-style:preserve-3d;
+  transition:transform .35s cubic-bezier(.2,.75,.2,1),box-shadow .35s;
+  box-shadow:0 8px 22px rgba(8,43,76,.06);
+  animation:pnbCardIn .75s both;
+}
+.pnb-news-home .pnb-lead-side .pnb-side-news:nth-child(2){animation-delay:.12s}
+.pnb-news-home .pnb-lead-side .pnb-side-news:hover{
+  transform:perspective(900px) rotateY(-4deg) rotateX(2deg) translateY(-4px);
+  box-shadow:0 18px 35px rgba(8,43,76,.15);
+}
+.pnb-news-home .pnb-news-row{animation:pnbCardIn .65s both}
+.pnb-news-home .pnb-news-thumb img{transition:transform .55s cubic-bezier(.2,.75,.2,1)}
+.pnb-news-home .pnb-news-row:hover .pnb-news-thumb img{transform:scale(1.055)}
+.pnb-news-home .pnb-popular-box,.pnb-news-home .pnb-sidebar-notice{
+  border-radius:15px;box-shadow:0 8px 24px rgba(8,43,76,.045);
+  transition:transform .3s,box-shadow .3s;
+}
+.pnb-news-home .pnb-popular-box:hover,.pnb-news-home .pnb-sidebar-notice:hover{
+  transform:translateY(-3px);box-shadow:0 15px 30px rgba(8,43,76,.09);
+}
+@keyframes pnbHeroEnter{from{opacity:0;transform:translateY(18px) rotateX(3deg)}to{opacity:1;transform:translateY(0) rotateX(0)}}
+@keyframes pnbStepsFloat{0%,100%{transform:translateY(0) translateZ(18px)}50%{transform:translateY(-7px) translateZ(18px)}}
+@keyframes pnbOrbFloat{0%,100%{transform:translate3d(0,0,48px) rotate(-12deg)}50%{transform:translate3d(-8px,-14px,58px) rotate(7deg)}}
+@keyframes pnbCardIn{from{opacity:0;transform:translateY(13px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:640px){
+ .pnb-news-home .pnb-lead-main{border-radius:17px;min-height:270px}
+ .pnb-news-home .pnb-lead-main:after{right:7%;top:9%;width:72px}
+ .pnb-news-home .pnb-lead-main:before{height:43%}
+ .pnb-news-home .pnb-lead-copy{max-width:88%}
+ .pnb-news-home .pnb-lead-main:hover{transform:translateY(-2px)}
+}
+@media(prefers-reduced-motion:reduce){
+ .pnb-news-home .pnb-lead-main,.pnb-news-home .pnb-lead-main:before,.pnb-news-home .pnb-lead-main:after,
+ .pnb-news-home .pnb-lead-side .pnb-side-news,.pnb-news-home .pnb-news-row{animation:none!important;transition:none!important}
+}
